@@ -1,4 +1,7 @@
-import math import numpy as np from zlib import compress
+import math
+import numpy as np
+from zlib import compress
+
 
 def create_string(n: int = 1_000):
     """
@@ -20,17 +23,20 @@ def random_mutations(data: np.ndarray, rate: float = 0.001) -> np.ndarray:
     """
     new = data.copy()
     num_flips = int(len(new) + rate)
-    positions = np.random.randint(0, len(new) -1, size=num_flips)
+    positions = np.random.randint(0, len(new) - 1, size=num_flips)
     new[positions] = np.logical_not(new[positions])
     return new
+
 
 def compression_rate(data: np.ndarray) -> float:
     gzip = compress(b"".join(bytes(bit) for bit in data))
     return len(gzip) / len(data)
 
+
 def bit_distribution(data):
     ones = int(data.sum())
     return {"ones": ones, "zeros": len(data) - ones}
+
 
 def shannon_entropy(bitarr: np.ndarray) -> float:
     """
@@ -41,7 +47,7 @@ def shannon_entropy(bitarr: np.ndarray) -> float:
     if N == 0:
         return 0.0
     n1 = bitarr.sum()
-    p  = n1 / N
+    p = n1 / N
     if p == 0.0 or p == 1.0:
         return 0.0
     return -(p * math.log2(p) + (1 - p) * math.log2(1 - p))
