@@ -1,6 +1,4 @@
-import math
-import numpy as np
-from zlib import compress
+import math import numpy as np from zlib import compress
 
 def create_string(n: int = 1_000):
     """
