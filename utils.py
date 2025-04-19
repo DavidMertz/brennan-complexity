@@ -46,6 +46,7 @@ def shannon_entropy(bitarr: np.ndarray) -> float:
         return 0.0
     return -(p * math.log2(p) + (1 - p) * math.log2(1 - p))
 
+
 if __name__ == "__main__":
     data = create_string(100)
     print(f"Original data:\n{data}")
